@@ -6,7 +6,7 @@ spring:
 ---
 server:
     prot: 8201
-spring
+spring:
     profiles: dev
     application:
         name: client-dev
@@ -14,7 +14,7 @@ spring
 ---
 server:
     prot: 8202
-spring
+spring:
     profiles: test
     application:
         name: client-test
