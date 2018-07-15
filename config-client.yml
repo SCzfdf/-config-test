@@ -1,20 +1,19 @@
 spring:
-    profiles:
-        active:
+  profiles:
+    active:
         - dev
+---
+server:
+  port: 8201
+spring:
+  profiles: dev
+  application:
+    name: client-dev
 
 ---
 server:
-    port: 8201
+  port: 8202
 spring:
-    profiles: dev
-    application:
-        name: client-dev
-
----
-server:
-    port: 8202
-spring:
-    profiles: test
-    application:
-        name: client-test
+  profiles: test
+  application:
+    name: client-test
