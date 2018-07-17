@@ -8,7 +8,7 @@ eureka:
     hostname: eureka-master
     leaseRenewalIntervalInSeconds: 1
   client:
-    serviceUrl.defaultZone: http://haku-admin:haku5201314@eureka-slave1:6002/eureka/,http://haku-admin:haku5201314@eureka-slave2:6003/eureka/
+    serviceUrl.defaultZone: http://haku-admin:haku52013141@eureka-slave1:6002/eureka/,http://haku-admin:haku5201314@eureka-slave2:6003/eureka/
 
 server:
   port: 6001
@@ -34,7 +34,7 @@ eureka:
     leaseRenewalIntervalInSeconds: 1
     hostname: eureka-slave1
   client:
-    serviceUrl.defaultZone: http://haku-admin:haku5201314@eureka-master:6001/eureka/,http://haku-admin:haku5201314@eureka-slave2:6003/eureka/
+    serviceUrl.defaultZone: http://haku-admin:haku52013142@eureka-master:6001/eureka/,http://haku-admin:haku5201314@eureka-slave2:6003/eureka/
 
 server:
   port: 6002
@@ -60,7 +60,7 @@ eureka:
     hostname: eureka-slave2
     leaseRenewalIntervalInSeconds: 1
   client:
-    serviceUrl.defaultZone: http://haku-admin:haku5201314@eureka-master:6001/eureka/,http://haku-admin:haku5201314@eureka-slave1:6002/eureka/
+    serviceUrl.defaultZone: http://haku-admin:haku52013143@eureka-master:6001/eureka/,http://haku-admin:haku5201314@eureka-slave1:6002/eureka/
 
 server:
   port: 6003
