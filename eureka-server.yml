@@ -1,5 +1,5 @@
 spring:
-  profiles: 6001
+  profiles: test
   application:
     name: eureka-service
 
@@ -25,7 +25,7 @@ security:
 ---
 
 spring:
-  profiles: 6002
+  profiles: prod
   application:
     name: eureka-service
 
@@ -51,7 +51,7 @@ security:
 ---
 
 spring:
-  profiles: 6003
+  profiles: dev
   application:
     name: eureka-service
 
