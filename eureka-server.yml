@@ -1,0 +1,75 @@
+spring:
+  profiles: 6001
+  application:
+    name: eureka-service
+
+eureka:
+  instance:
+    hostname: eureka-master
+    leaseRenewalIntervalInSeconds: 1
+  client:
+    serviceUrl.defaultZone: http://haku-admin:haku5201314@eureka-slave1:6002/eureka/,http://haku-admin:haku5201314@eureka-slave2:6003/eureka/
+
+server:
+  port: 6001
+  undertow:
+   io-threads: 4
+   worker-threads: 1024
+   buffer-size: 1024
+   direct-buffers: true
+security:
+  user:
+    name: haku-admin
+    password: haku5201314
+
+---
+
+spring:
+  profiles: 6002
+  application:
+    name: eureka-service
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    hostname: eureka-slave1
+  client:
+    serviceUrl.defaultZone: http://haku-admin:haku5201314@eureka-master:6001/eureka/,http://haku-admin:haku5201314@eureka-slave2:6003/eureka/
+
+server:
+  port: 6002
+  undertow:
+   io-threads: 4
+   worker-threads: 1024
+   buffer-size: 1024
+   direct-buffers: true
+security:
+  user:
+    name: haku-admin
+    password: haku5201314
+
+---
+
+spring:
+  profiles: 6003
+  application:
+    name: eureka-service
+
+eureka:
+  instance:
+    hostname: eureka-slave2
+    leaseRenewalIntervalInSeconds: 1
+  client:
+    serviceUrl.defaultZone: http://haku-admin:haku5201314@eureka-master:6001/eureka/,http://haku-admin:haku5201314@eureka-slave1:6002/eureka/
+
+server:
+  port: 6003
+  undertow:
+   io-threads: 4
+   worker-threads: 1024
+   buffer-size: 1024
+   direct-buffers: true
+security:
+  user:
+    name: haku-admin
+    password: haku5201314
