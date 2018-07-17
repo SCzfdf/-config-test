@@ -20,7 +20,7 @@ server:
 security:
   user:
     name: haku-admin
-    password: haku5201314
+    password: haku52013141
 
 ---
 
@@ -46,7 +46,7 @@ server:
 security:
   user:
     name: haku-admin
-    password: haku5201314
+    password: haku52013142
 
 ---
 
@@ -72,4 +72,4 @@ server:
 security:
   user:
     name: haku-admin
-    password: haku5201314
+    password: haku52013143
