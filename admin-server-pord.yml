@@ -1,6 +1,6 @@
 spring:
   application:
-    name: admin-server
+      name: admin-server-dev
   datasource:
     url: jdbc:mysql://yyn_db.youyinian.cn/yyn_db?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: youyinian
@@ -13,36 +13,25 @@ spring:
       test-on-borrow: false
       test-while-idle: true
       time-between-eviction-runs-millis: 18800
-    tomcat:
-      jdbc-interceptors: ConnectionState;SlowQueryReport(threshold=100)
-#  data:
-#    elasticsearch:
-#      cluster-name: yyn_elastic
-#      cluster-nodes: 127.0.0.1:9300
-#      repositories:
-#        enabled: true
+#    tomcat:
+#      jdbc-interceptors: ConnectionState;SlowQueryReport(threshold=0)
+
+
 
   redis:
-    host: 127.0.0.1
-    port: 6379
-    password:
-    pool:
-      max-active: 500  # 连接池最大连接数（使用负值表示没有限制）
-      max-wait: -1   # 连接池最大阻塞等待时间（使用负值表示没有限制）
-      max-idle: 200    # 连接池中的最大空闲连接
-      min-idle: 50   # 连接池中的最小空闲连接
-    timeout: 5000    # 连接超时时间（毫秒）
+     database: 0
+     host: 127.0.0.1
+     port: 6379
+     password:
+     pool:
+       max-active: 8  # 连接池最大连接数（使用负值表示没有限制）
+       max-wait: -1   # 连接池最大阻塞等待时间（使用负值表示没有限制）
+       max-idle: 8    # 连接池中的最大空闲连接
+       min-idle: 1    # 连接池中的最小空闲连接
+     timeout: 5000    # 连接超时时间（毫秒）
   redis2:
-    host: 10.104.10.188
-    port: 63791
-
-  jpa:
-    show-sql: true
-#    hibernate:
-#      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+     host: 127.0.0.1
+     port: 6379
 
   http:
     encoding:
@@ -52,22 +41,22 @@ spring:
 
 server:
   undertow:
-    io-threads: 4
-    worker-threads: 50
-    buffer-size: 1024
-    direct-buffers: true
-    accesslog:
-      enabled: true
-      dir: /data/admin-logs
-      prefix: admin_youyinian_access_log
-    max-http-post-size: 10485760
+      io-threads: 4
+      worker-threads: 50
+      buffer-size: 1024
+      direct-buffers: true
+      accesslog:
+        enabled: true
+        dir: /diska/admin-logs
+        prefix: admin_youyinian_access_log
+      max-http-post-size: 10485760
   port: 8091
-  address: 10.104.179.20
+  address: 127.0.0.1
   tomcat:
     accesslog:
-      directory: /diska/admin-logs
+      directory: /User/jl/data/logs
 #      suffix: .log
-      prefix: admin-youyinian_access_log
+      prefix: admin_access_log
       enabled: true
 
     max-threads: 2000
@@ -76,7 +65,13 @@ server:
     max-http-post-size: 10485760
 
 logging:
-  config: classpath:log-prod.xml
+  config: classpath:log-dev.xml
+
+
+
+#url: jdbc:mysql://yyn_db.youyinian.cn/yyn_db?useUnicode=true&characterEncoding=utf8
+#username: youyinian
+#password: 29b03671fd2
 
 security:
   user:
@@ -89,7 +84,14 @@ security:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://haku-admin:haku5201314@eureka-master:6001/eureka/,http://haku-admin:haku5201314@eureka-slave1:6002/eureka/,http://haku-admin:haku5201314@eureka-slave2:6003/eureka/
+      defaultZone: http://haku-admin:haku5201314@localhost:6001/eureka/
   instance:
-    preferIpAddress: true
-    leaseRenewalIntervalInSeconds: 1
+      leaseRenewalIntervalInSeconds: 10
+      metadataMap:
+        instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+        
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+MaxAutoRetriesNextServer: 1
